@@ -12,7 +12,7 @@ data <- readRDS('madonna_data.Rds')
 
 #word counts
 word_counts <- lapply(data, function(x) {
-  text_df <- data_frame(text = x$lyrics)
+  text_df <- data_frame(text = unique(x$lyrics))
   tidy_df <- text_df %>%
     unnest_tokens(word, text) %>%
     anti_join(stop_words) %>%
@@ -26,7 +26,6 @@ word_counts <- rbindlist(word_counts, use.names = T)
 
 write.csv(word_counts, 'madonna_word_count.csv', row.names = F)
 
-#remove repeated verses in song
 sentiments <- lapply(data, function(x) {
   coef <- mean(sentiment(unique(x$lyrics))$sentiment, na.rm = T)
   result <- copy(x$song_info)
