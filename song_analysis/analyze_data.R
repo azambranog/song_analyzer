@@ -24,7 +24,7 @@ word_counts <- lapply(data, function(x) {
 
 word_counts <- rbindlist(word_counts, use.names = T)
 
-write.csv(word_counts, 'madonna_word_count.csv')
+write.csv(word_counts, 'madonna_word_count.csv', row.names = F)
 
 #remove repeated verses in song
 sentiments <- lapply(data, function(x) {
@@ -35,7 +35,7 @@ sentiments <- lapply(data, function(x) {
 })
 sentiments <- rbindlist(sentiments, use.names = T)
 
-write.csv(sentiments, 'madonna_sentiments.csv')
+write.csv(sentiments, 'madonna_sentiments.csv', row.names = F)
 
 
 
