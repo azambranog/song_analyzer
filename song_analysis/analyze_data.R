@@ -24,6 +24,12 @@ word_counts <- lapply(data, function(x) {
 
 word_counts <- rbindlist(word_counts, use.names = T)
 
+sillywords <- c('yeah', 'uh', 'la', 'ooh', 'eva', 'da',
+                'hey', 'peron', 'mmm', 'na', 'che', 'ah', 
+                'chorus', 'de', 'ya', 'yo', 'ba', 'em')
+
+word_counts <- word_counts[!word %in% sillywords, ]
+
 write.csv(word_counts, 'madonna_word_count.csv', row.names = F)
 
 sentiments <- lapply(data, function(x) {
